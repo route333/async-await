@@ -1,0 +1,24 @@
+{
+  "name": "async-await",
+  "version": "1.0.0",
+  "description": "",
+  "main": "index.js",
+  "scripts": {
+    "start": "parcel index.html",
+    "build": "parcel build index.html --public-url /https-hw",
+    "pre-start": "npm run build"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/route333/async-await.git"
+  },
+  "author": "",
+  "license": "ISC",
+  "bugs": {
+    "url": "https://github.com/route333/async-await/issues"
+  },
+  "homepage": "https://github.com/route333/async-await#readme",
+  "dependencies": {
+    "parcel": "^2.12.0"
+  }
+}
