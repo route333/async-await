@@ -21,19 +21,30 @@ function handleInput() {
   }
 
   find = inpValue;
-
   clearResults();
   fetchImages();
+  input.value = "";
 }
 
+const loadedImageIds = []; 
+
 async function fetchImages() {
-  const nameUrl = `https://pixabay.com/api/?image_type=photo&orientation=horizontal&q=${find}&per-page=${currentPage}&per_page=${perPage}&key=${apiKey}`;
+  const nameUrl = `https://pixabay.com/api/?image_type=photo&orientation=horizontal&q=${find}&page=${currentPage}&per_page=${perPage}&key=${apiKey}`;
 
   try {
     const response = await fetch(nameUrl);
     const data = await response.json();
+
+    if (data.hits.length === 0) {
+        ul.innerHTML = "<li>No images found.</li>";
+        return;
+      }
+
     data.hits.forEach((hit) => {
-      createPic(hit);
+      if (!loadedImageIds.includes(hit.id)) { 
+        createPic(hit);
+        loadedImageIds.push(hit.id); 
+      }
     });
   } catch (error) {
     console.error("Error fetching:", error);
